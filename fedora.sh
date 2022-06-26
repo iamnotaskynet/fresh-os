@@ -11,7 +11,7 @@ sudo dnf install -y \
 
 
 # utils??
-sudo dng install -y mc curl
+sudo dnf install -y mc curl
 
 # Docker
 sudo dnf config-manager \
