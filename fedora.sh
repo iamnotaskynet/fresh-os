@@ -2,6 +2,7 @@
 
 sudo dnf update --refresh -y
 sudo dnf install -y fedora-workstation-repositories
+sudo dnf install -y gnome-tweaks 
 sudo dnf install -y dnf-plugins-core
 sudo dnf install -y flatpak
 sudo dnf install -y \
@@ -18,7 +19,15 @@ sudo dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo
 sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-# sudo systemctl start docker
+# Add user to docker group
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo systemctl enable docker
+# if not
+sudo systemctl is-active docker
+# then
+sudo systemctl start docker
 
 # k8s
 
@@ -28,6 +37,9 @@ sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/$release/h
 sudo dnf install -y terraform
 
 # Ansible
+
+# ffmpeg
+sudo dnf install -y ffmpeg
 
 # Chrome
 sudo dnf config-manager --set-enabled google-chrome
